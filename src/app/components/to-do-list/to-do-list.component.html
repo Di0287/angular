@@ -2,27 +2,13 @@
   <h1>To Do List</h1>
 
   <ul>
-    <li>
-      <span>aaaaaaaaaaaa</span>
-      <button>Delete</button>
-    </li>
-    <li>
-      <span>bbbbbbbbbbb</span>
-      <button>Delete</button>
-    </li>
-    <li>
-      <span>ccccccccccc</span>
-      <button>Delete</button>
-    </li>
-    <li>
-      <span>ddddddddddd</span>
-      <button>Delete</button>
-    </li>
-    <li>
-      <span>eeeeeeeeeee</span>
-      <button>Delete</button>
-    </li>
+    <app-to-do-list-item-component *ngFor="let toDoList of toDoLists" [toDoItem]="toDoList" (itemDeleteEvent)="itemDelete($event)"/>
   </ul>
 
-  <button>Add</button>
+  <mat-form-field class="example-full-width">
+    <mat-label>Добавление</mat-label>
+    <input matInput placeholder="Введите название ..." [(ngModel)]="name">
+  </mat-form-field>
+
+  <button (click)="itemAdd()" class="button button--add" [ngClass]="{disabled: !name}">Add</button>
 </div>
