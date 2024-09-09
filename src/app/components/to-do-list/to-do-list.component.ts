@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
-import {ToDoListItemComponentComponent} from "../to-do-list-item-component/to-do-list-item-component.component";
+import {
+  toDoItemI,
+  ToDoListItemComponentComponent
+} from "../to-do-list-item-component/to-do-list-item-component.component";
+import {SharedModule} from "../../module/shared/shared.module";
 
 @Component({
   selector: 'app-to-do-list',
@@ -17,13 +21,16 @@ import {ToDoListItemComponentComponent} from "../to-do-list-item-component/to-do
     MatInput,
     FormsModule,
     NgClass,
-    ToDoListItemComponentComponent
+    ToDoListItemComponentComponent,
+    NgIf,
+    SharedModule
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
 })
+
 export class ToDoListComponent {
-  toDoLists = [
+  toDoLists: toDoItemI[] = [
     {id: 1, text: 'To-Do item # 1'},
     {id: 2, text: 'To-Do item # 2'},
     {id: 3, text: 'To-Do item # 3'},
@@ -34,7 +41,7 @@ export class ToDoListComponent {
     {id: 8, text: 'To-Do item # 8'},
     {id: 9, text: 'To-Do item # 9'},
     {id: 10, text: 'To-Do item # 10'},
-    {id: 11, text: 'To-Do item # 11'},
+    {id: 11, text: 'To-Do item # 11'}
   ]
 
   name: string | null = null
@@ -55,4 +62,11 @@ export class ToDoListComponent {
   }
 
   protected readonly Math = Math;
+
+  isLoading: boolean = true
+
+  ngOnInit() {
+    setTimeout(() => {this.isLoading = false}, 500)
+  }
+
 }
