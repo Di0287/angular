@@ -1,0 +1,4 @@
+<li [ngClass]="{'selected': isSelect}">
+  <span>{{ toDoItem.text }}</span>
+  <app-button (itemDeleteEvent)="itemDelete()" title="Delete"></app-button>
+</li>

@@ -5,25 +5,27 @@ import {SharedModule} from "../../module/shared/shared.module";
 export interface toDoItemI {
   id: number;
   text: string;
+  description: string;
 }
 
 @Component({
-  selector: 'app-to-do-list-item-component',
+  selector: 'app-to-do-list-item',
   standalone: true,
   imports: [
     NgForOf,
     NgClass,
     SharedModule
   ],
-  templateUrl: './to-do-list-item-component.component.html',
-  styleUrl: './to-do-list-item-component.component.scss'
+  templateUrl: './to-do-list-item.component.html',
+  styleUrl: './to-do-list-item.component.scss'
 })
 
-export class ToDoListItemComponentComponent {
+export class ToDoListItemComponent {
   @Input() toDoItem!: toDoItemI
+  @Input() isSelect?: boolean
   @Output() itemDeleteEvent = new EventEmitter<number>()
 
-  itemDelete(Id: number | undefined) {
-    this.itemDeleteEvent.emit(Id);
+  itemDelete() {
+    this.itemDeleteEvent.emit(this.toDoItem.id);
   }
 }
