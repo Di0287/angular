@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,4 +7,9 @@ import {Component, Input} from '@angular/core';
 })
 export class ButtonComponent {
   @Input() title!: string;
+  @Output() itemDeleteEvent = new EventEmitter<number>();
+
+  itemDelete() {
+    this.itemDeleteEvent.emit();
+  }
 }

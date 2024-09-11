@@ -1,0 +1,17 @@
+span {
+  float: inline-start;
+}
+app-button {
+  float: inline-end;
+}
+
+li {
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+
+  &.selected {
+    background: aqua;
+  }
+}

@@ -1,20 +1,20 @@
 .container {
   text-align: center;
-  width: 500px;
+  width: 1000px;
   border: 1px solid black;
   margin: 0 auto;
+
+  .column {
+    white-space: normal;
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    background: #fff2e1;
+  }
+
   ul {
     margin: 0 10px 10px;
     background: aquamarine;
-    li {
-      text-align: left;
-      padding: 15px;
-      button {
-        min-width: 100px;
-        height: 25px;
-        float: right;
-      }
-    }
   }
 
   .button {
