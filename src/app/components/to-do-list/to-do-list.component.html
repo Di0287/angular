@@ -29,7 +29,9 @@
           [toDoItem]="toDoList"
           (itemDeleteEvent)="itemDelete($event)"
           (click)="selectedItem(toDoList.id)"
+          (dblclick)="renameItem(toDoList.id)"
           [isSelect]="(selectedItemId === toDoList.id)"
+          [isRename]="renameItemId"
         />
       </ul>
 
