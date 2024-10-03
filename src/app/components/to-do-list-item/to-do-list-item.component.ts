@@ -2,14 +2,8 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {SharedModule} from "../../module/shared/shared.module";
 import {FormsModule} from "@angular/forms";
-import {TodoListService} from "../../service/todo-list.service";
 import {ToastService} from "../../service/toast.service";
-
-export interface toDoItemI {
-  id: number;
-  text: string;
-  description: string;
-}
+import {toDoItemI} from "../../models/_.interface";
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -32,15 +26,16 @@ export class ToDoListItemComponent {
   @Input() isSelect?: boolean
   @Input() isRename?: number | null
   @Output() itemDeleteEvent = new EventEmitter<number>()
+  @Output() itemSaveEvent = new EventEmitter<{id: number, status: string, text: string}>()
 
   textSave: string = ''
+  statusSave: string = ''
 
   itemDelete() {
     this.toastService.show('DELETE - ' + this.toDoItem.id)
     this.itemDeleteEvent.emit(this.toDoItem.id);
   }
   itemSave() {
-    TodoListService.saveToDoLists(this.textSave, this.toDoItem.id)
-    this.isRename = null
+    this.itemSaveEvent.emit({id: this.toDoItem.id, status: this.statusSave, text: this.textSave});
   }
 }

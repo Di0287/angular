@@ -28,6 +28,7 @@
           *ngFor="let toDoList of toDoLists"
           [toDoItem]="toDoList"
           (itemDeleteEvent)="itemDelete($event)"
+          (itemSaveEvent)="itemSave($event)"
           (click)="selectedItem(toDoList.id)"
           (dblclick)="renameItem(toDoList.id)"
           [isSelect]="(selectedItemId === toDoList.id)"
@@ -35,20 +36,12 @@
         />
       </ul>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Добавление</mat-label>
-        <input matInput placeholder="Введите название ..." [(ngModel)]="name">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Описание</mat-label>
-        <textarea matInput placeholder="Введите описание ..." [(ngModel)]="description"></textarea>
-      </mat-form-field>
-
-      <app-button (click)="itemAdd()" title="Add"></app-button>
+      <app-todo-create-item
+        (itemAddEvent)="itemAdd($event)"
+      />
     </div>
 
-    <div class="column">
+    <div class="column-2">
       <div *ngIf="selectedItemId != null">
 {{ descriptionText()}}
       </div>
