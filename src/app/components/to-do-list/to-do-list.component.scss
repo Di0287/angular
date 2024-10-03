@@ -7,7 +7,15 @@
   .column {
     white-space: normal;
     display: inline-block;
-    width: 48%;
+    width: 70%;
+    vertical-align: top;
+    background: #fff2e1;
+  }
+
+  .column-2 {
+    white-space: normal;
+    display: inline-block;
+    width: 28%;
     vertical-align: top;
     background: #fff2e1;
   }
@@ -40,7 +48,3 @@
   }
 }
 
-.example-full-width {
-  padding-top: 20px;
-  width: 100%;
-}

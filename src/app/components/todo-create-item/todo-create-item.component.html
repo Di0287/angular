@@ -1,0 +1,19 @@
+<mat-form-field class="example-full-width">
+  <mat-label>Добавление</mat-label>
+  <input matInput placeholder="Введите название ..." [(ngModel)]="textAdd">
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Описание</mat-label>
+  <textarea matInput placeholder="Введите описание ..." [(ngModel)]="descriptionAdd"></textarea>
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Описание</mat-label>
+  <select matNativeControl placeholder="Введите описание ..." [(ngModel)]="statusAdd">
+    <option value="Completed">Completed</option>
+    <option value="InProgress">InProgress</option>
+  </select>
+</mat-form-field>
+
+<app-button (click)="itemAdd()" title="Add"></app-button>

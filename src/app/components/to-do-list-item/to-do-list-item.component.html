@@ -1,4 +1,17 @@
+{{isRename}}
 <li [ngClass]="{'selected': isSelect}">
-  <span>{{ toDoItem.text }}</span>
-  <app-button (itemDeleteEvent)="itemDelete()" title="Delete"></app-button>
+    <ng-container *ngIf="isRename !== toDoItem.id; else rename">
+    <span>[ {{ toDoItem.status }} ] - </span>
+    <span>{{ toDoItem.text }}</span>
+    <app-button (itemDeleteEvent)="itemDelete()" title="Delete"></app-button>
+  </ng-container>
+
+  <ng-template #rename>
+    <select [(ngModel)]="statusSave">
+      <option value="Completed">Completed</option>
+      <option value="InProgress">InProgress</option>
+    </select>
+    <input [(ngModel)]="textSave" [defaultValue]="toDoItem.text">
+    <app-button (itemDeleteEvent)="itemSave()" title="Save"></app-button>
+  </ng-template>
 </li>

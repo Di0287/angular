@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
-import {
-  toDoItemI,
-  ToDoListItemComponent
-} from "../to-do-list-item/to-do-list-item.component";
+import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.component";
 import {SharedModule} from "../../module/shared/shared.module";
-
+import {TodoListService} from "../../service/todo-list.service";
+import {HttpResponse} from "@angular/common/http";
+import {toDoItemI} from "../../models/_.interface";
+import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
 @Component({
   selector: 'app-to-do-list',
   standalone: true,
@@ -23,55 +23,79 @@ import {SharedModule} from "../../module/shared/shared.module";
     NgClass,
     ToDoListItemComponent,
     NgIf,
-    SharedModule
+    SharedModule,
+    TodoCreateItemComponent
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
 })
 
 export class ToDoListComponent {
-  toDoLists: toDoItemI[] = [
-    {id: 1, text: 'To-Do item # 1', description: 'description # 1' },
-    {id: 2, text: 'To-Do item # 2', description: 'description # 2' },
-    {id: 3, text: 'To-Do item # 3', description: 'description # 3' },
-    {id: 4, text: 'To-Do item # 4', description: 'description # 4' },
-    {id: 5, text: 'To-Do item # 5', description: 'description # 5' },
-    {id: 6, text: 'To-Do item # 6', description: 'description # 6' },
-    {id: 7, text: 'To-Do item # 7', description: 'description # 7' },
-    {id: 8, text: 'To-Do item # 8', description: 'description # 8' },
-    {id: 9, text: 'To-Do item # 9', description: 'description # 9' },
-    {id: 10, text: 'To-Do item # 10', description: 'description # 10' },
-    {id: 11, text: 'To-Do item # 11', description: 'description # 11'}
-  ]
+  api = inject(TodoListService)
+  toDoLists: toDoItemI[] = []
 
-  name: string | null = null
-  description: string | null = null
+  constructor() {
+    this.api.getToDoLists().subscribe((res:toDoItemI[]) => {
+      console.log(res)
+      this.toDoLists = res;
+    })
+  }
+
+
+  // name: string | null = null
+  // status: string = ''
+  // description: string = ''
   selectedItemId: number | null = null
+  renameItemId: number | null = null
   selectedItem(id: number) {
     this.selectedItemId = id;
   }
+  renameItem(id: number) {
+    this.renameItemId = id;
+  }
 
   descriptionText() {
-
     return this.toDoLists.find(item => item.id === this.selectedItemId)?.description;
   }
 
   itemDelete(id: number) {
-    let index: number = this.toDoLists.findIndex(item => item.id === id);
-    if(index !== -1) {
-      this.toDoLists.splice(index, 1);
-    }
+    this.api.removeToDoLists(id).subscribe((res:HttpResponse<any>) => {
+      if(res.ok){
+        this.api.getToDoLists().subscribe((res:toDoItemI[]) => {
+          console.log(res)
+          this.toDoLists = res;
+        })
+      }
+    })
   }
-  itemAdd() {
-    if(this.name) {
-      let index: number = Math.max(...this.toDoLists.map(item => item.id));
-      index++
-      this.toDoLists.push(<toDoItemI>{id: index, text: this.name + ' # ' + index, description: this.description});
-      this.name = null
+  itemAdd(data: {status: string, text: string, description: string, }) {
+    if(data.text && data.status) {
+      // let index: number = Math.max(...this.toDoLists.map(item => item.id));
+      // index++
+      this.api.addToDoLists({ "status": data.status, "text": data.text + ' # ' + 'index', "description": data.description}).subscribe((res:HttpResponse<any>) => {
+        console.log(res)
+        if(res.ok){
+          this.api.getToDoLists().subscribe((res:toDoItemI[]) => {
+            console.log(res)
+            this.toDoLists = res;
+          })
+        }
+      })
     }
   }
 
-  protected readonly Math = Math;
+  itemSave(data: {id: number, status: string, text: string}) {
+    this.api.saveToDoLists(data).subscribe((res:HttpResponse<any>) => {
+      console.log(res)
+      if(res.ok){
+        this.api.getToDoLists().subscribe((res:toDoItemI[]) => {
+          console.log(res)
+          this.toDoLists = res;
+        })
+      }
+    })
+    this.renameItemId = null
+  }
 
   isLoading: boolean = true
 
