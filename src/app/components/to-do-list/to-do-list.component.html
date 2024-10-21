@@ -20,7 +20,6 @@
   </ng-template>
 
   <h1>To Do List</h1>
-
   <div *ngIf="!isLoading;else iconLoading">
     <div class="column">
       <ul>
@@ -28,7 +27,6 @@
           *ngFor="let toDoList of toDoLists"
           [toDoItem]="toDoList"
           (itemDeleteEvent)="itemDelete($event)"
-          (itemSaveEvent)="itemSave($event)"
           (click)="selectedItem(toDoList.id)"
           (dblclick)="renameItem(toDoList.id)"
           [isSelect]="(selectedItemId === toDoList.id)"
@@ -42,9 +40,7 @@
     </div>
 
     <div class="column-2">
-      <div *ngIf="selectedItemId != null">
-{{ descriptionText()}}
-      </div>
+        <router-outlet></router-outlet>
     </div>
   </div>
 </div>
