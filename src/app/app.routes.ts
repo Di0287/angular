@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
-import {TodoCreateItemComponent} from "./components/todo-create-item/todo-create-item.component";
 import {ToDoItemViewComponent} from "./components/to-do-item-wiev/to-do-item-wiev.component";
 
 export const routes: Routes = [
@@ -19,12 +18,8 @@ export const routes: Routes = [
       },
     ]
   },
-  // {
-  //   path: ':id',
-  //   component:ToDoItemWievComponent
-  // },
   {
     path: '**',
-    component: TodoCreateItemComponent,
+    component: ToDoListComponent,
   }
 ];
