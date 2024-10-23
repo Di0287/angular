@@ -1,0 +1,18 @@
+<p>dddddddddddddddd</p>
+<!--{{ toDoListView | json }}-->
+<div>
+<ng-container *ngIf="toDoListView | async as data;">
+  <span>[ {{ data.status }} ] - </span>
+  <span>{{ data.text }}</span>
+<!--  <app-button (itemDeleteEvent)="itemDelete()" title="Delete"></app-button>-->
+
+  <br>
+  <br>
+    <select [(ngModel)]="statusSave">
+      <option value="Completed">Completed</option>
+      <option value="InProgress">InProgress</option>
+    </select>
+    <input [(ngModel)]="textSave">
+    <app-button (itemDeleteEvent)="itemSave()" title="Save"></app-button>
+</ng-container>
+</div>

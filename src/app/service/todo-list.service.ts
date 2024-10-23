@@ -14,6 +14,11 @@ export class TodoListService {
     return this.http.request<toDoItemI[]>('GET', 'http://localhost:3000/list')
   }
 
+
+  getToDoListWiev(id: number):Observable<toDoItemI> {
+    return this.http.request<toDoItemI>('GET', `http://localhost:3000/list/${id}`)
+  }
+
   addToDoLists(toDoItem: {status: string, text: string, description: string, }):Observable<HttpResponse<toDoItemI>>  {
     return this.http.request<toDoItemI>('POST', `http://localhost:3000/list/`, {
       observe: "response",
