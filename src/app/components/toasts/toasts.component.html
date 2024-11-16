@@ -1,7 +1,4 @@
 <div class="toasts-body">
-<!--   Тут пропадает реактивность-->
-<!--  <div class="toasts-message" *ngFor="let message of toasts">-->
-<!--  А так нет-->
   <div class="toasts-message" *ngFor="let message of toastService.getToasts()">
     <p>{{ message }}</p>
   </div>

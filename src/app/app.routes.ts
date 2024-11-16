@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
 import {ToDoItemViewComponent} from "./components/to-do-item-wiev/to-do-item-wiev.component";
+import {BoardComponent} from "./components/board/board.component";
 
 export const routes: Routes = [
   {
@@ -17,6 +18,10 @@ export const routes: Routes = [
         component: ToDoItemViewComponent,
       },
     ]
+  },
+  {
+    path: 'board',
+    component: BoardComponent,
   },
   {
     path: '**',
