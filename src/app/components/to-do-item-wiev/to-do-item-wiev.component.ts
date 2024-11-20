@@ -65,6 +65,6 @@ export class ToDoItemViewComponent {
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+    this.destroy$.complete();
   }
 }

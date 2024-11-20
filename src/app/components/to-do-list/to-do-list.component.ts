@@ -77,6 +77,6 @@ export class ToDoListComponent implements OnInit
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+    this.destroy$.complete();
   }
 }
