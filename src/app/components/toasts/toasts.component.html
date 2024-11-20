@@ -1,5 +1,5 @@
 <div class="toasts-body">
-  <div class="toasts-message" *ngFor="let message of toastService.getToasts()">
+  <div class="toasts-message" *ngFor="let message of (toasts | async)">
     <p>{{ message }}</p>
   </div>
 </div>

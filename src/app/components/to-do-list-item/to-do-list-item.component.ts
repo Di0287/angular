@@ -27,17 +27,10 @@ export class ToDoListItemComponent {
   @Input() toDoItem!: toDoItemI
   @Input() isSelect?: boolean
   @Input() isRename?: number | null
-  @Output() itemDeleteEvent = new EventEmitter<number>()
-  // @Output() itemSaveEvent = new EventEmitter<{id: number, status: string, text: string}>()
+  @Output() itemDeleteEvent: EventEmitter<number> = new EventEmitter<number>()
 
-  textSave: string = ''
-  statusSave: string = ''
-
-  itemDelete() {
+  public itemDelete(): void {
     this.toastService.show('DELETE - ' + this.toDoItem.id)
     this.itemDeleteEvent.emit(this.toDoItem.id);
   }
-  // itemSave() {
-  //   this.itemSaveEvent.emit({id: this.toDoItem.id, status: this.statusSave, text: this.textSave});
-  // }
 }

@@ -20,11 +20,11 @@
   </ng-template>
 
   <h1>To Do List</h1>
-  <div *ngIf="!isLoading;else iconLoading">
+  <ng-container *ngIf="!isLoading;else iconLoading">
     <div class="column">
       <ul>
         <app-to-do-list-item
-          *ngFor="let toDoList of toDoLists"
+          *ngFor="let toDoList of (toDoLists | async)"
           [toDoItem]="toDoList"
           (itemDeleteEvent)="itemDelete($event)"
           (click)="selectedItem(toDoList.id)"
@@ -42,6 +42,6 @@
     <div class="column-2">
         <router-outlet></router-outlet>
     </div>
-  </div>
+  </ng-container>
 </div>
 

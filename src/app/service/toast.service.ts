@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
-  toastsL: string[] = []
+  toastsL:BehaviorSubject<string[]> = new BehaviorSubject<string[]>([])
 
   show(message: string, duration: number = 1500) {
-    this.toastsL.push(message)
+    this.toastsL.next([...this.toastsL.getValue(), message])
     setTimeout(() => {
       this.remove(message)
     }, duration)
   }
 
   remove(message: string) {
-    console.log(message)
-    this.toastsL = this.toastsL.filter(t => t !== message)
-  }
-
-  getToasts() {
-    return this.toastsL
+    this.toastsL.next(this.toastsL.getValue().filter((t: string) => t !== message))
   }
 }

@@ -1,6 +1,6 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, NgIterable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {toDoItemI} from "../models/_.interface";
 
 @Injectable({
@@ -8,18 +8,17 @@ import {toDoItemI} from "../models/_.interface";
 })
 export class TodoListService {
   http = inject(HttpClient);
-  constructor() { }
+  toDoLists:BehaviorSubject<toDoItemI[]> = new BehaviorSubject<toDoItemI[]>([])
 
   getToDoLists():Observable<toDoItemI[]> {
     return this.http.request<toDoItemI[]>('GET', 'http://localhost:3000/list')
   }
 
-
   getToDoListWiev(id: number):Observable<toDoItemI> {
     return this.http.request<toDoItemI>('GET', `http://localhost:3000/list/${id}`)
   }
 
-  addToDoLists(toDoItem: {status: string, text: string, description: string, }):Observable<HttpResponse<toDoItemI>>  {
+  addToDoLists(toDoItem: {status: string, text: string, description: string }):Observable<HttpResponse<toDoItemI>>  {
     return this.http.request<toDoItemI>('POST', `http://localhost:3000/list/`, {
       observe: "response",
       responseType: "json",
