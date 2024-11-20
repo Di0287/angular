@@ -16,7 +16,7 @@ import {TodoListService} from "../../service/todo-list.service";
 })
 export class BoardComponent  implements OnInit
 {
-  api = inject(TodoListService)
+  api: TodoListService = inject(TodoListService)
   toDoListsCompleted: toDoItemI[] = []
   toDoListsInProgress: toDoItemI[] = []
   ngOnInit() {

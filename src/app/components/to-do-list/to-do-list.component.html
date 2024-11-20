@@ -24,7 +24,7 @@
     <div class="column">
       <ul>
         <app-to-do-list-item
-          *ngFor="let toDoList of toDoLists | async"
+          *ngFor="let toDoList of (toDoLists | async)"
           [toDoItem]="toDoList"
           (itemDeleteEvent)="itemDelete($event)"
           (click)="selectedItem(toDoList.id)"

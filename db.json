@@ -29,24 +29,6 @@
       "status": "Completed",
       "text": "To-Do item # 11",
       "description": "description # 11"
-    },
-    {
-      "id": "12",
-      "status": "InProgress",
-      "text": "ssss # 12",
-      "description": "ssss"
-    },
-    {
-      "id": "13",
-      "status": "Completed",
-      "text": "ddd # 13",
-      "description": "ssss"
-    },
-    {
-      "id": "1563",
-      "status": "Completed",
-      "text": "qqqqq # index",
-      "description": "wwwwww"
     }
   ],
   "list2": [

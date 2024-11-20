@@ -1,12 +1,11 @@
 import {Component, EventEmitter, inject, Injector, OnInit, Output} from "@angular/core";
-import {Observable, Subject, switchMap, takeUntil} from "rxjs";
+import {Observable, Subject, switchMap, takeUntil, tap} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {TodoListService} from "../../service/todo-list.service";
 import {toDoItemI} from "../../models/_.interface";
 import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../../module/shared/shared.module";
-import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-to-do-item-wiev',
@@ -57,15 +56,11 @@ export class ToDoItemViewComponent {
   public itemSave(): void {
     this.api.saveToDoLists({id: this.idSave, status: this.statusSave, text: this.textSave})
       .pipe(takeUntil(this.destroy$))
-      .subscribe((res: HttpResponse<toDoItemI>): void => {
-        if (res.ok) {
-          this.api.getToDoLists()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((res: toDoItemI[]) => {
-              this.router.navigate(['/'])
-            })
-        }
-      })
+      .pipe(
+        switchMap(() => this.api.getToDoLists()),
+        tap(() => this.router.navigate(['/']))
+      )
+      .subscribe((res:toDoItemI[]) => this.api.toDoLists.next(res))
   }
 
   ngOnDestroy() {

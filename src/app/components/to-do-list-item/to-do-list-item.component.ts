@@ -31,6 +31,6 @@ export class ToDoListItemComponent {
 
   public itemDelete(): void {
     this.toastService.show('DELETE - ' + this.toDoItem.id)
-    this.itemDeleteEvent.emit(this.toDoItem.id);
+    // this.itemDeleteEvent.emit(this.toDoItem.id);
   }
 }

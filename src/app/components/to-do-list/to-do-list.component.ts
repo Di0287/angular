@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, NgIterable, OnInit} from '@angular/core';
 import {AsyncPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
@@ -10,7 +10,7 @@ import {HttpResponse} from "@angular/common/http";
 import {toDoItemI} from "../../models/_.interface";
 import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
 import {RouterOutlet} from "@angular/router";
-import {Observable, Subject, takeUntil} from "rxjs";
+import {BehaviorSubject, Observable, Subject, switchMap, takeUntil} from "rxjs";
 @Component({
   selector: 'app-to-do-list',
   standalone: true,
@@ -37,7 +37,7 @@ import {Observable, Subject, takeUntil} from "rxjs";
 export class ToDoListComponent implements OnInit
 {
   api: TodoListService = inject(TodoListService)
-  toDoLists: Observable<toDoItemI[]> = this.api.getToDoLists()
+  toDoLists: BehaviorSubject<toDoItemI[]> = this.api.toDoLists
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   selectedItemId: number | null = null
@@ -52,21 +52,15 @@ export class ToDoListComponent implements OnInit
   public itemDelete(id: number): void {
     this.api.removeToDoLists(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((res:HttpResponse<any>) => {
-      if(res.ok){
-        this.api.getToDoLists()
-      }
-    })
+      .pipe(switchMap(() => this.api.getToDoLists()))
+      .subscribe((res:toDoItemI[]) => this.api.toDoLists.next(res))
   }
   public itemAdd(data: {status: string, text: string, description: string, }): void {
     if(data.text && data.status) {
       this.api.addToDoLists({ "status": data.status, "text": data.text + ' # ' + 'index', "description": data.description})
         .pipe(takeUntil(this.destroy$))
-        .subscribe((res:HttpResponse<any>) => {
-        if(res.ok){
-          this.api.getToDoLists()
-        }
-      })
+        .pipe(switchMap(() => this.api.getToDoLists()))
+        .subscribe((res:toDoItemI[]) => this.api.toDoLists.next(res))
     }
   }
 
@@ -74,6 +68,10 @@ export class ToDoListComponent implements OnInit
 
   ngOnInit() {
     this.api.getToDoLists()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+      (res:toDoItemI[]) => this.api.toDoLists.next(res)
+    )
     setTimeout(() => {this.isLoading = false}, 500)
   }
 
