@@ -6,10 +6,10 @@
   <br>
   <br>
     <select [(ngModel)]="statusSave">
-      <option value="Completed">Completed</option>
-      <option value="InProgress">InProgress</option>
+      <option value="Completed" i18n="@@Completed">Завершенный</option>
+      <option value="InProgress" i18n="@@InProgress">В работе</option>
     </select>
     <input [(ngModel)]="textSave">
-    <app-button (itemDeleteEvent)="itemSave()" title="Save"></app-button>
+    <app-button (itemDeleteEvent)="itemSave()" i18n-title="@@Save" title="Сохранить"></app-button>
 </ng-container>
 </div>
