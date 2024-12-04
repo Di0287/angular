@@ -13,15 +13,29 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale":{
+          "code": "ru",
+          "baseHref": "/ru/"
+        },
+        "locales": {
+          "en-US": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": "/en/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "i18nMissingTranslation": "ignore",
             "outputPath": "dist/app-aplication",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -57,6 +71,12 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "ru":{
+              "localize": ["ru"]
+            },
+            "en":{
+              "localize": ["en-US"]
             }
           },
           "defaultConfiguration": "production"
@@ -69,9 +89,15 @@
             },
             "development": {
               "buildTarget": "app-aplication:build:development"
+            },
+            "ru": {
+              "buildTarget": "app-aplication:build:development,ru"
+            },
+            "en": {
+              "buildTarget": "app-aplication:build:development,en"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "ru"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -81,7 +107,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",

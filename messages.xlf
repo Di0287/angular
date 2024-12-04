@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ru" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5194912054053114732" datatype="html">
+        <source>Backlog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="467515590191938529" datatype="html">
+        <source>Board</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Completed" datatype="html">
+        <source>Завершенный</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/to-do-item-wiev/to-do-item-wiev.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="InProgress" datatype="html">
+        <source>В работе</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">4,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/to-do-item-wiev/to-do-item-wiev.component.html</context>
+          <context context-type="linenumber">10,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Save" datatype="html">
+        <source>Сохранить</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/to-do-item-wiev/to-do-item-wiev.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Delete" datatype="html">
+        <source>Удалить</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/to-do-list-item/to-do-list-item.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6931804171340734138" datatype="html">
+        <source>Список дел</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/to-do-list/to-do-list.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="872941510882766873" datatype="html">
+        <source>Добавление</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3803187925499922359" datatype="html">
+        <source>Введите название ...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5085375219320218745" datatype="html">
+        <source>Описание</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6917151915066012491" datatype="html">
+        <source>Введите описание ...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3198937660400400559" datatype="html">
+        <source>Статус</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="760930073808392019" datatype="html">
+        <source>Добавить</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

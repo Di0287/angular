@@ -3,13 +3,15 @@ import {NgForOf} from "@angular/common";
 import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.component";
 import {toDoItemI} from "../../models/_.interface";
 import {TodoListService} from "../../service/todo-list.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-board',
   standalone: true,
     imports: [
         NgForOf,
-        ToDoListItemComponent
+        ToDoListItemComponent,
+        FormsModule
     ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
